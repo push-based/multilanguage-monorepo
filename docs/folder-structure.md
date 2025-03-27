@@ -14,7 +14,6 @@ At the root, you’ll find global configuration and technology-specific entry po
 - Per-language folders for source code:
   - `react/` – Frontend projects built with React and TypeScript
   - `dotnet/` – .NET Core backend projects and libraries
-  - `python/` – Analytics or scripting logic
   - ... and any other language supported by Nx
 
 > 💡 **Why this structure?**
@@ -38,45 +37,27 @@ Inside each language-specific folder:
 
 Within `apps/` and `libs/`, each project is grouped by its business domain or feature area.
 
-### React Example
-
-```
-react/
-└── libs/
-    └── transactions/
-        ├── data-access/
-        ├── ui/
-        └── utils/
-```
-
 ### Multi-Language Example
 
 ```
-react/
-├── apps/
-│   └── dashboard/            # React frontend application
-└── libs/
-    └── transactions/
-        ├── ui/               # UI components related to transactions
-        ├── data-access/      # API clients or hooks (e.g., React Query, Axios)
-        └── utils/            # Shared utilities specific to the transactions domain
-
 dotnet/
 ├── apps/
-│   └── transactions-api/     # .NET Core Web API for transactions
+│   ├── transactions-api/         # .NET Core Web API for transactions
+│   └── transactions-api-test/    # Integration or unit tests for API
 └── libs/
-    └── transactions/
-        ├── domain/           # Domain models and business logic
-        ├── data-access/      # EF Core repositories or DB access logic
-        └── services/         # Application services for orchestration
+    ├── transactions-domain-model/       # Domain models and core logic
+    └── transactions-domain-model-test/  # Tests for the domain logic
 
-python/
+react/
+├── apps/
+│   ├── transactions/             # React frontend app
+│   └── transactions-e2e/         # End-to-end Cypress tests
 └── libs/
-    └── transactions/
-        └── analytics/        # Data analytics logic (e.g., ML models or pandas pipelines)
+    ├── transactions-data-access/    # API clients or hooks (e.g., React Query)
+    └── transactions-ui/             # UI components for the transaction domain
 ```
 
-This demonstrates how a single domain (e.g., `transactions`) can exist across stacks, maintaining modularity and encouraging collaboration.
+This reflects a real-world implementation of a shared `transactions` domain across multiple stacks.
 
 ---
 
