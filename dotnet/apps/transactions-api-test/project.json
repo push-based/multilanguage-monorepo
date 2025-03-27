@@ -1,0 +1,7 @@
+{
+  "name": "dotnet-transactions-api-test",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "dotnet/apps/transactions-api-test",
+  "tags": ["lang:dotnet", "scope:transactions"]
+}

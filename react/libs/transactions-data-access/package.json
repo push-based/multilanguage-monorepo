@@ -1,0 +1,20 @@
+{
+  "name": "@nx-multilanguage-monorepo/react-transactions-data-access",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "name": "react-transactions-data-access",
+    "tags": ["lang:react", "scope:transactions"]
+  }
+}

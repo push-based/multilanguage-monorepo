@@ -1,0 +1,19 @@
+{
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../../libs/transactions-data-access"
+    },
+    {
+      "path": "../../libs/transactions-ui"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../../tsconfig.base.json"
+}

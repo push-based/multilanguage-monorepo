@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./react/apps/transactions-e2e"
+    },
+    {
+      "path": "./react/apps/transactions"
+    },
+    {
+      "path": "./react/libs/transactions-data-access"
+    },
+    {
+      "path": "./react/libs/transactions-ui"
+    }
+  ]
+}

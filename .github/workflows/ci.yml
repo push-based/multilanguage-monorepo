@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: nrwl/nx-set-shas@v4
+
+      # Cache node_modules
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+          cache: npm
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      - run: npm ci
+      - run: npx cypress install
+
+      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
+      # - run: npx nx-cloud record -- echo Hello World
+      - run: npx nx affected -t lint test build e2e --verbose
