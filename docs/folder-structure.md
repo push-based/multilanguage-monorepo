@@ -1,3 +1,4 @@
+
 # 📁 Folder Structure
 
 This monorepo is organized to support multiple languages, maintain scalable architecture, and encourage separation of concerns. Each level in the structure serves a clear purpose and aligns with good best practices for managing large, multi-stack codebases.
@@ -13,7 +14,8 @@ At the root, you’ll find global configuration and technology-specific entry po
 - Per-language folders for source code:
   - `react/` – Frontend projects built with React and TypeScript
   - `dotnet/` – .NET Core backend projects and libraries
-  - ... and any other language supported by nx
+  - `python/` – Analytics or scripting logic
+  - ... and any other language supported by Nx
 
 > 💡 **Why this structure?**
 > This layout enforces strong boundaries between tech stacks, keeps tooling isolated, and makes it easier for developers to navigate unfamiliar parts of the monorepo.
@@ -36,7 +38,7 @@ Inside each language-specific folder:
 
 Within `apps/` and `libs/`, each project is grouped by its business domain or feature area.
 
-### Example:
+### React Example
 
 ```
 react/
@@ -47,11 +49,34 @@ react/
         └── utils/
 ```
 
-This enables:
+### Multi-Language Example
 
-- Logical grouping by domain (`transactions`, `auth`, `payments`, etc.)
-- Easier enforcement of dependency boundaries using tags and scopes
-- Better scalability when adding features or refactoring
+```
+react/
+├── apps/
+│   └── dashboard/            # React frontend application
+└── libs/
+    └── transactions/
+        ├── ui/               # UI components related to transactions
+        ├── data-access/      # API clients or hooks (e.g., React Query, Axios)
+        └── utils/            # Shared utilities specific to the transactions domain
+
+dotnet/
+├── apps/
+│   └── transactions-api/     # .NET Core Web API for transactions
+└── libs/
+    └── transactions/
+        ├── domain/           # Domain models and business logic
+        ├── data-access/      # EF Core repositories or DB access logic
+        └── services/         # Application services for orchestration
+
+python/
+└── libs/
+    └── transactions/
+        └── analytics/        # Data analytics logic (e.g., ML models or pandas pipelines)
+```
+
+This demonstrates how a single domain (e.g., `transactions`) can exist across stacks, maintaining modularity and encouraging collaboration.
 
 ---
 
