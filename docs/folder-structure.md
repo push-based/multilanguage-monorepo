@@ -1,4 +1,3 @@
-
 # 📁 Folder Structure
 
 This monorepo is organized to support multiple languages, maintain scalable architecture, and encourage separation of concerns. Each level in the structure serves a clear purpose and aligns with good best practices for managing large, multi-stack codebases.
@@ -14,7 +13,7 @@ At the root, you’ll find global configuration and technology-specific entry po
 - Per-language folders for source code:
   - `react/` – Frontend projects built with React and TypeScript
   - `dotnet/` – .NET Core backend projects and libraries
-  - ... and any other language supported by Nx
+  - ... and any other language supported by nx
 
 > 💡 **Why this structure?**
 > This layout enforces strong boundaries between tech stacks, keeps tooling isolated, and makes it easier for developers to navigate unfamiliar parts of the monorepo.
@@ -37,27 +36,22 @@ Inside each language-specific folder:
 
 Within `apps/` and `libs/`, each project is grouped by its business domain or feature area.
 
-### Multi-Language Example
+### Example:
 
 ```
-dotnet/
-├── apps/
-│   ├── transactions-api/         # .NET Core Web API for transactions
-│   └── transactions-api-test/    # Integration or unit tests for API
-└── libs/
-    ├── transactions-domain-model/       # Domain models and core logic
-    └── transactions-domain-model-test/  # Tests for the domain logic
-
 react/
-├── apps/
-│   ├── transactions/             # React frontend app
-│   └── transactions-e2e/         # End-to-end Cypress tests
 └── libs/
-    ├── transactions-data-access/    # API clients or hooks (e.g., React Query)
-    └── transactions-ui/             # UI components for the transaction domain
+    └── transactions/
+        ├── data-access/
+        ├── ui/
+        └── utils/
 ```
 
-This reflects a real-world implementation of a shared `transactions` domain across multiple stacks.
+This enables:
+
+- Logical grouping by domain (`transactions`, `auth`, `payments`, etc.)
+- Easier enforcement of dependency boundaries using tags and scopes
+- Better scalability when adding features or refactoring
 
 ---
 

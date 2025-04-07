@@ -3,5 +3,13 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "dotnet/libs/transactions-domain-model-test",
-  "tags": ["lang:dotnet", "scope:transactions"]
+  "tags": ["lang:dotnet", "scope:transactions"],
+  "targets": {
+    "test": {
+      "executor": "@nx-dotnet/core:test",
+      "options": {
+        "noBuild": false
+      }
+    }
+  }
 }
