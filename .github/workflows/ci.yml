@@ -1,38 +1,33 @@
-name: CI
+name: CI - Affected
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  pull_request:
-
-permissions:
-  actions: read
-  contents: read
 
 jobs:
   main:
-    runs-on: ubuntu-latest
+    name: Build & Test
+    runs-on: ubuntu-24.04
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: nrwl/nx-set-shas@v4
+      - name: Set SHAs for affected command
+        uses: nrwl/nx-set-shas@v4
 
-      # Cache node_modules
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: 'package.json'
-          cache: npm
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
 
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '9.0.x'
+      - name: Install Cypress (cached)
+        run: npx cypress install
 
-      - run: npm ci
-      - run: npx cypress install
+      - name: Setup .NET SDK
+        uses: ./.github/actions/setup-dotnet
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: npx nx-cloud record -- echo Hello World
-      - run: npx nx affected -t lint test build e2e --verbose
+      - name: Run affected targets
+        run: |
+          npx nx affected -t lint test build e2e --verbose

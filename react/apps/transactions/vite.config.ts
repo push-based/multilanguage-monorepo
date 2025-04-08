@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/transactions',
+  cacheDir: '../../../node_modules/.vite/apps/transactions',
   server: {
     port: 4200,
     host: 'localhost',
@@ -19,7 +19,7 @@ export default defineConfig(() => ({
   //   plugins: [nxViteTsPaths()],
   // },
   build: {
-    outDir: './dist',
+    outDir: '../../../dist/react/apps/transactions',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

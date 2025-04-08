@@ -12,8 +12,8 @@ export function App() {
   >([]);
 
   useEffect(() => {
-    getBalance().then(setBalance);
-    getRecentTransactions().then(setTransactions);
+    getBalance().then(setBalance).catch(console.error);
+    getRecentTransactions().then(setTransactions).catch(console.error);
   }, []);
 
   return (
