@@ -1,0 +1,28 @@
+name: Publish .NET Library
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: ./.github/actions/setup-dotnet
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dotnet-build-artifacts
+          path: dist/dotnet/libs/
+
+      - name: Pack NuGet package
+        run: npx nx affected --target=pack
+
+      - name: Publish to NuGet
+        run: npx nx affected --target=publish --args="--source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}"

@@ -1,5 +1,5 @@
 {
-  "name": "react-transactions-app-e2e",
+  "name": "@nx-multilanguage-monorepo/react-transactions-app-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {

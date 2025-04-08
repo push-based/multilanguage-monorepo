@@ -1,4 +1,3 @@
-
 # 📁 Folder Structure
 
 This monorepo is organized to support multiple languages, maintain scalable architecture, and encourage separation of concerns. Each level in the structure serves a clear purpose and aligns with good best practices for managing large, multi-stack codebases.

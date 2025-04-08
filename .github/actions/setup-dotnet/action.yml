@@ -1,0 +1,33 @@
+name: Setup .NET SDK
+
+runs:
+  using: "composite"
+  steps:
+    - name: Detect .NET SDK versions from global.json
+      id: detect-dotnet
+      shell: bash
+      run: |
+        FILES=$(find dotnet -name global.json)
+        if [[ -z "$FILES" ]]; then
+          echo 'dotnet_sdks=["9.0.x"]' >> $GITHUB_OUTPUT
+        else
+          VERSIONS=$(grep -ho '"version": *"[^"]*"' $FILES | cut -d '"' -f4 | sort -u)
+          JSON=$(echo "$VERSIONS" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "dotnet_sdks=$JSON" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Install .NET SDKs
+      shell: bash
+      run: |
+        curl -sSL https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh
+        chmod +x dotnet-install.sh
+
+        echo "DOTNET_ROOT=$HOME/.dotnet" >> $GITHUB_ENV
+        echo "$HOME/.dotnet" >> $GITHUB_PATH
+
+        for version in $(echo '${{ steps.detect-dotnet.outputs.dotnet_sdks }}' | jq -r '.[]'); do
+          echo "Installing .NET SDK $version"
+          echo "::group::.NET $version"
+          ./dotnet-install.sh --version "$version"
+          echo "::endgroup::"
+        done

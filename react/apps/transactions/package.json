@@ -1,9 +1,18 @@
 {
-  "name": "react-transactions-app",
+  "name": "@nx-multilanguage-monorepo/react-transactions-app",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "name": "react-transactions-app",
     "tags": ["lang:react", "scope:transactions"]
+  },
+  "dependencies": {
+    "@nx-multilanguage-monorepo/react-transactions-data-access": "0.0.1",
+    "@nx-multilanguage-monorepo/react-transactions-ui": "0.0.1",
+    "@vitejs/plugin-react": "^4.2.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "6.29.0",
+    "vite": "^6.0.0"
   }
 }

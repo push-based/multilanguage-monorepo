@@ -42,29 +42,6 @@ A detailed comparison of available Nx plugins across languages is available in [
 - [Nx CLI](https://nx.dev/cli) – optional but recommended
 - [.NET SDK](https://dotnet.microsoft.com/) (only for C# projects)
 
-### Serving Full Stack
-
-To run a full stack app (React + .NET Core), use the following commands:
-
-```bash
-# Install dependencies
-npm install
-```
-
-```bash
-# Start the React app
-npx nx run react-transactions-app:serve
-```
-
-> Requires a .NET setup
-
-```bash
-# Run setup command
-npm run dotnet:setup
-# Start the .NET Core app
-npx nx run dotnet-transactions-api:serve --port=5087
-```
-
 ### React setup
 
 To serve the react application, use the following commands:
@@ -84,6 +61,24 @@ npx nx serve react-transactions-app
 
 For step-by-step instructions to add and work with .NET Core projects, see [`docs/dotnet-nx-setup.md`](./docs/dotnet-nx-setup.md).
 
+### Serving Full Stack
+
+To run a full stack app (React + .NET Core), use the following commands:
+
+```bash
+# Start the React app
+npx nx run react-transactions-app:serve
+```
+
+> Requires a .NET setup
+
+```bash
+# Run setup command
+npm run dotnet:setup
+# Start the .NET Core app
+npx nx run dotnet-transactions-api:serve --port=5087
+```
+
 ### View projects graph
 
 ```bash
@@ -94,7 +89,17 @@ npx nx dep-graph
 
 ## 🧪 CI/CD
 
-TODO
+- Conventional commits are crucial for the CI/CD process. Documentation available in [`docs/conventional-commits.md`](./docs/conventional-commits.md).
+- Workflow overview documentation is available in [`docs/release-flow.md`](./docs/release-flow.md).
+- Technical information about CI/CD can be found in [`docs/ci-cd.md`](./docs/ci-cd.md).
+
+| Workflow            | Trigger      | Purpose                         |
+| ------------------- | ------------ | ------------------------------- |
+| `ci.yml`            | PR to main   | Lint, test, build, e2e affected |
+| `deploy.yml`        | Push to main | Build & deploy React app        |
+| `nuget-publish.yml` | Tag v*.*.\*  | Pack & publish .NET libraries   |
+| `npm-publish.yml`   | Tag v*.*.\*  | Publish JS packages to npm      |
+| `version.yml`       | Push to main | Bump versions, tag last-release |
 
 ---
 
@@ -107,6 +112,9 @@ TODO
 - [`docs/react-lib-generation.md`](./docs/react-lib-generation.md)
 - [`docs/nx-multilang-plugins.md`](./docs/nx-multilang-plugins.md)
 - [`docs/dotnet-nx-setup.md`](./docs/dotnet-nx-setup.md)
+- [`docs/conventional-commits.md`](./docs/conventional-commits.md)
+- [`docs/release-flow.md`](./docs/release-flow.md)
+- [`docs/ci-cd.md`](./docs/ci-cd.md)
 - [`docs/troubleshooting.md`](./docs/troubleshooting.md)
 
 ---

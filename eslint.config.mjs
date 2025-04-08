@@ -1,6 +1,14 @@
 import nx from '@nx/eslint-plugin';
 
 export default [
+  {
+    files: ['**/*.json'],
+    // Override or add rules here
+    rules: {},
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
+  },
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
@@ -13,34 +21,33 @@ export default [
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    // Temporary disabled
-    // rules: {
-    //   '@nx/enforce-module-boundaries': [
-    //     'error',
-    //     {
-    //       enforceBuildableLibDependency: true,
-    //       allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
-    //       depConstraints: [
-    //         {
-    //           sourceTag: 'lang:react',
-    //           onlyDependOnLibsWithTags: ['lang:react'],
-    //         },
-    //         {
-    //           sourceTag: 'lang:dotnet',
-    //           onlyDependOnLibsWithTags: ['lang:dotnet'],
-    //         },
-    //         {
-    //           sourceTag: 'scope:transactions',
-    //           onlyDependOnLibsWithTags: ['scope:transactions', 'scope:shared'],
-    //         },
-    //         {
-    //           sourceTag: 'scope:shared',
-    //           onlyDependOnLibsWithTags: ['scope:shared'],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+    rules: {
+      '@nx/enforce-module-boundaries': [
+        'error',
+        {
+          enforceBuildableLibDependency: true,
+          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
+          depConstraints: [
+            {
+              sourceTag: 'lang:react',
+              onlyDependOnLibsWithTags: ['lang:react'],
+            },
+            {
+              sourceTag: 'lang:dotnet',
+              onlyDependOnLibsWithTags: ['lang:dotnet'],
+            },
+            {
+              sourceTag: 'scope:transactions',
+              onlyDependOnLibsWithTags: ['scope:transactions', 'scope:shared'],
+            },
+            {
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared'],
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     files: [
