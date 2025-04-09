@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/setup-node
 
       - name: Install Cypress (cached)
-        run: npx cypress install
+        run: npx cypress install # Test comment
 
       - name: Setup .NET SDK
         uses: ./.github/actions/setup-dotnet
