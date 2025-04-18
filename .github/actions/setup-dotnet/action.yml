@@ -31,3 +31,8 @@ runs:
           ./dotnet-install.sh --version "$version"
           echo "::endgroup::"
         done
+
+    - name: Restore .NET
+      shell: bash
+      run: |
+        npm run dotnet:setup

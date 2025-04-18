@@ -90,7 +90,7 @@ TBD
 
 ---
 
-## 🧩 Versioning (`version.yml`)
+## 🧩 Versioning (`ci.yml`)
 
 **Triggered by:** Push to `main`
 
@@ -133,4 +133,4 @@ TBD
 | `deploy.yml`        | Push to main | Build & deploy React app        |
 | `nuget-publish.yml` | Tag v*.*.\*  | Pack & publish .NET libraries   |
 | `npm-publish.yml`   | Tag v*.*.\*  | Publish JS packages to npm      |
-| `version.yml`       | Push to main | Bump versions, tag last-release |
+| `ci.yml`            | Push to main | Bump versions, tag last-release |

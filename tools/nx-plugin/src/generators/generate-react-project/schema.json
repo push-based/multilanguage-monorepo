@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "GenerateReactProject",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "projectType": {
+      "type": "string",
+      "description": "Application or Library",
+      "x-prompt": {
+        "message": "What type of project would you like to generate?",
+        "type": "array",
+        "multiselect": false,
+        "items": ["application", "library"]
+      }
+    },
+    "directory": {
+      "type": "string",
+      "description": "Project location",
+      "x-prompt": {
+        "message": "Where would you like to generate the project? (i.e. react/apps)",
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Project name",
+      "x-prompt": {
+        "message": "What name would you like to use?",
+        "type": "string"
+      }
+    }
+  },
+  "required": ["projectType", "name", "directory"]
+}

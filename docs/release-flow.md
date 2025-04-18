@@ -12,7 +12,7 @@ The release flow is divided into several phases:
   Every commit and pull request undergoes comprehensive testing, linting, and build verification using the `ci.yml` workflow.
 
 - **Release Preparation:**  
-  On every merge to the `main` branch, the release process is automatically triggered. This phase uses semantic versioning and changelog generation based on conventional commits, orchestrated by the `version.yml` workflow with the help of the [@jscutlery/semver](https://www.npmjs.com/package/@jscutlery/semver) package.
+  On every merge to the `main` branch, the release process is automatically triggered. This phase uses semantic versioning and changelog generation based on conventional commits, orchestrated by the `ci.yml` workflow with the help of the [@jscutlery/semver](https://www.npmjs.com/package/@jscutlery/semver) package.
 
 - **Publishing:**  
   The publishing phase uploads the final artifacts:
@@ -43,7 +43,7 @@ The release flow is divided into several phases:
 ### 2.2. Release Preparation
 
 - **Trigger:** Merge to the `main` branch.
-- **Workflow:** `version.yml`
+- **Workflow:** `ci.yml`
 - **Key Steps:**
   - **Versioning & Changelog Generation:**  
     Utilizes the [@jscutlery/semver](https://www.npmjs.com/package/@jscutlery/semver) package to automatically determine new version numbers based on conventional commits. This process calculates the version and updates the changelog.

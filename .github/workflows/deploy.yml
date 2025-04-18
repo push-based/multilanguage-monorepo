@@ -1,69 +1,95 @@
-name: Deploy React App (Nx Workspace)
+name: "CI/CD React Deploy"
 
 on:
   push:
     branches:
       - main
-    paths:
-      - 'react/apps/transactions/**'
-      - 'react/libs/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'nx.json'
-      - '.github/workflows/deploy.yml'
 
 jobs:
-  build_and_deploy:
+  # 1. Build the React application(s) and upload the artifact
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Required for Nx affected
+          fetch-depth: 0
+
+      - name: Set SHAs for affected command
+        uses: nrwl/nx-set-shas@v4
 
       - name: Setup Node.js
         uses: ./.github/actions/setup-node
 
       - name: Build React App
-        run: npx nx build react-transactions-app --prod
+        run: npx nx affected -t build --exclude='*,!tag:lang:react'
 
-      - name: Deploy to Production # Example: Netlify
-        uses: netlify/actions/cli@master # Replace with your deployment method
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
-          args: deploy --prod --dir=dist/react/apps/transactions
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          name: react-build
+          path: dist/react/apps/
 
-      # Alternative deployment examples:
+  # 2. Deploy to Dev environment
+  deploy-dev:
+    name: "Deploy to Dev"
+    needs: build
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build
 
-      # Example: Deploy to AWS S3 + CloudFront
-      # - name: Deploy to S3
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: your-aws-region
-      # - name: Sync to S3 bucket
-      #   run: aws s3 sync dist/react/apps/transactions s3://your-s3-bucket --delete
+      - name: Deploy to Dev
+        run: |
+          echo "Starting deployment to DEV..."
 
-      # - name: Invalidate CloudFront cache
-      #   run: aws cloudfront create-invalidation --distribution-id your-cloudfront-distribution-id --paths "/*"
+  # 3. Deploy to UAT, only if Dev succeeded
+  deploy-uat:
+    name: "Deploy to UAT"
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    environment: uat
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build
 
-      # Example: Deploy to Firebase Hosting
-      # - name: Deploy to Firebase Hosting
-      #   uses: w9jds/firebase-action@master
-      #   with:
-      #     args: deploy --only hosting
-      #   env:
-      #     FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Deploy to UAT
+        run: |
+          echo "Starting deployment to UAT..."
 
-      # Example: Deploy to Vercel
-      # - name: Deploy to Vercel
-      #   uses: amondnet/vercel-action@v20
-      #   with:
-      #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
-      #     vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-      #     vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-      #     working-directory: ./dist/react/apps/transactions
+  # 4. Deploy to PPR, only if UAT succeeded
+  deploy-ppr:
+    name: "Deploy to PPR"
+    needs: deploy-uat
+    runs-on: ubuntu-latest
+    environment: ppr
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build
+
+      - name: Deploy to PPR
+        run: |
+          echo "Starting deployment to PPR..."
+
+  # 5. Deploy to Production, only if PPR succeeded
+  deploy-prd:
+    name: "Deploy to Production"
+    needs: deploy-ppr
+    runs-on: ubuntu-latest
+    environment: prd
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: react-build
+
+      - name: Deploy to Production
+        run: |
+          echo "Starting deployment to PRODUCTION..."

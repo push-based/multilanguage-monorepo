@@ -1,6 +1,6 @@
 {
   "name": "@nx-multilanguage-monorepo/react-transactions-data-access",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "main": "../../../dist/react/libs/transactions-data-access/index.js",
   "module": "../../../dist/react/libs/transactions-data-access/index.js",
@@ -15,7 +15,10 @@
   },
   "nx": {
     "name": "react-transactions-data-access",
-    "tags": ["lang:react", "scope:transactions"]
+    "tags": [
+      "lang:react",
+      "scope:transactions"
+    ]
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.2.0",

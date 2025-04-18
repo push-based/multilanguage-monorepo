@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dotnet:setup": "nx g @nx-dotnet/core:restore",
-    "prepare": "husky"
+    "dotnet:setup": "npx nx g @nx-dotnet/core:restore",
+    "prepare": "husky",
+    "postinstall": "patch-package"
   },
   "private": true,
   "dependencies": {
@@ -55,6 +56,8 @@
     "jsdom": "~22.1.0",
     "jsonc-eslint-parser": "^2.4.0",
     "nx": "20.6.2",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.6.2",
     "tslib": "^2.3.0",
     "typescript": "~5.7.2",
