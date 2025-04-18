@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "GenerateDotnetProject",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "projectType": {
+      "type": "string",
+      "description": "Application or Library",
+      "x-prompt": {
+        "message": "What type of project would you like to generate?",
+        "type": "array",
+        "multiselect": false,
+        "items": ["application", "library"]
+      }
+    },
+    "directory": {
+      "type": "string",
+      "description": "Project location",
+      "x-prompt": {
+        "message": "Where would you like to generate the project? (i.e. dotnet/libs)",
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Project name",
+      "x-prompt": {
+        "message": "What name would you like to use?",
+        "type": "string"
+      }
+    },
+    "language": {
+      "type": "string",
+      "description": "Which language should the project use?",
+      "x-prompt": {
+        "message": "Which language should the project use?",
+        "type": "array",
+        "items": ["C#", "F#", "VB"]
+      }
+    },
+    "testTemplate": {
+      "type": "string",
+      "description": "Which template should be used for creating the tests project?",
+      "default": "nunit",
+      "enum": ["nunit", "xunit", "mstest", "none"],
+      "aliases": ["testRunner"],
+      "x-prompt": {
+        "message": "Which template should be used for creating the tests project",
+        "type": "array",
+        "items": [
+          {
+            "value": "nunit",
+            "label": "NUnit 3 Test Project"
+          },
+          {
+            "value": "xunit",
+            "label": "xUnit Test Project"
+          },
+          {
+            "value": "mstest",
+            "label": "Unit Test Project"
+          },
+          {
+            "value": "none",
+            "label": "No Unit Test Project"
+          }
+        ]
+      }
+    },
+    "pathScheme": {
+      "description": "Determines if the project should follow NX or dotnet path naming conventions",
+      "type": "string",
+      "default": "nx",
+      "enum": ["nx", "dotnet"],
+      "x-prompt": {
+        "message": "Which path naming conventions should the project use?",
+        "type": "array",
+        "items": [
+          {
+            "value": "nx",
+            "label": "NX naming conventions"
+          },
+          {
+            "value": "dotnet",
+            "label": "Dotnet naming conventions"
+          }
+        ]
+      }
+    },
+      "dotnetVersion": {
+        "description": ".NET version",
+        "type": "string",
+        "x-prompt": {
+          "message": "What .NET version do you want to use? (keep empty if you want the default)",
+          "type": "string"
+        }
+      }
+  },
+  "required": ["projectType", "name", "language", "testTemplate", "pathScheme"]
+}

@@ -5,6 +5,8 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <Version>0.1.6</Version>
+    <PackageId>NxMultilanguageMonorepo.Dotnet.TransactionsApi</PackageId>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>

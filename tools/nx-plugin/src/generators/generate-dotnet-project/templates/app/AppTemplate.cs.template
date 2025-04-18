@@ -1,0 +1,17 @@
+using System;
+
+namespace <%= namespace %>
+{
+    public class <%= className %>
+    {
+        public <%= className %>()
+        {
+            Console.WriteLine("Instance of <%= className %> created.");
+        }
+
+        public void SayHello()
+        {
+            Console.WriteLine("Hello from <%= className %> in <%= namespace %>!");
+        }
+    }
+}

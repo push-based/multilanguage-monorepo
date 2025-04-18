@@ -80,7 +80,7 @@ BREAKING CHANGE: The /v1/users endpoint is now /v2/users.
 ## 3. Benefits of Using Conventional Commits
 
 - **Automated Release Flow:**  
-  Our release workflows (`version.yml`, `npm-publish.yml`, `nuget-publish.yml`) rely on these commit messages to automate version bumps and generate changelogs.
+  Our release workflows (`ci.yml`, `npm-publish.yml`, `nuget-publish.yml`) rely on these commit messages to automate version bumps and generate changelogs.
 
 - **Consistent Collaboration:**  
   A uniform commit message format makes it easier for team members to understand the project history and rationale behind changes.
@@ -114,7 +114,7 @@ BREAKING CHANGE: The /v1/users endpoint is now /v2/users.
 Our CI/CD setup leverages conventional commits to:
 
 - **Determine Versioning:**  
-  The `version.yml` workflow uses commit messages to calculate the next semantic version using [@jscutlery/semver](https://www.npmjs.com/package/@jscutlery/semver).
+  The `ci.yml` workflow uses commit messages to calculate the next semantic version using [@jscutlery/semver](https://www.npmjs.com/package/@jscutlery/semver).
 
 - **Generate Changelogs:**  
   Commit messages are parsed to create detailed changelogs during the release process.

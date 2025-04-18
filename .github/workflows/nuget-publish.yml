@@ -1,9 +1,9 @@
-name: Publish .NET Library
+name: Publish .NET Packages
 
 on:
   push:
-    tags:
-      - v*.*.*
+    branches:
+      - main
 
 jobs:
   publish:
@@ -11,18 +11,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set SHAs for affected command
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
 
       - name: Setup .NET SDK
         uses: ./.github/actions/setup-dotnet
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dotnet-build-artifacts
-          path: dist/dotnet/libs/
+      - name: Build .NET libraries
+        run: |
+          npx nx affected -t build --exclude='*,!tag:lang:dotnet' --verbose
 
       - name: Pack NuGet package
-        run: npx nx affected --target=pack
+        run: npx nx affected --target=pack --verbose
 
       - name: Publish to NuGet
         run: npx nx affected --target=publish --args="--source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}"

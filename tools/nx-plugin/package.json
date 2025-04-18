@@ -43,8 +43,19 @@
     }
   },
   "dependencies": {
+    "@nx/devkit": "20.6.2",
     "tslib": "^2.3.0",
     "nx": "20.6.2",
-    "@nx/devkit": "20.6.2"
-  }
+    "@nx-dotnet/dotnet": "2.5.0",
+    "@nx-dotnet/core": "^2.5.0",
+    "@nx/react": "20.6.2"
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "generators.json",
+    "executors.json"
+  ],
+  "generators": "./generators.json",
+  "executors": "./executors.json"
 }

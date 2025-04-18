@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "update-csproj-version": {
+      "implementation": "./dist/executors/update-csproj-version/update-csproj-version",
+      "schema": "./dist/executors/update-csproj-version/schema.json",
+      "description": "Update csproj Version executor"
+    }
+  }
+}

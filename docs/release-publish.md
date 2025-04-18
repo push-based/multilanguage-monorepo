@@ -13,7 +13,7 @@
 - creates a git tags and commits for released projects
 - requires GITHUB_TOKEN secret to access the repository
 - pushes the changes to the origin
-- the CI configuration can be found in `.github/workflows/version.yml`
+- the CI configuration can be found in `.github/workflows/ci.yml`
 
 ### Conventional commits
 
