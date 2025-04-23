@@ -34,8 +34,13 @@ function getProjectName(
 }
 
 function getCurrentBranchName(): string {
-  return execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+  return (
+    process.env.GITHUB_HEAD_REF ||
+    process.env.GITHUB_REF?.replace('refs/heads/', '') ||
+    execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
+  );
 }
+
 
 export const createNodesV2: CreateNodesV2 = [
   '{react,dotnet}/**/{package,project}.json',

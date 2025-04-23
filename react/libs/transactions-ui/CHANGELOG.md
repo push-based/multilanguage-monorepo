@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.3.2](https://github.com/push-based/nx-multilanguage-repo/compare/react-transactions-ui@0.3.1...react-transactions-ui@0.3.2) (2025-04-23)
+
+
+### Bug Fixes
+
+* **react-transactions-ui:** balance card font size fixed ([e0a9cec](https://github.com/push-based/nx-multilanguage-repo/commit/e0a9cecd63d4b93fe7f1f757dade8b571cd4aea0))
+
 ## [0.3.1](https://github.com/push-based/nx-multilanguage-repo/compare/react-transactions-ui@0.3.0...react-transactions-ui@0.3.1) (2025-04-17)
 
 
