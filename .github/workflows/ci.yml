@@ -48,6 +48,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checkout target branch
+        run: |
+          git fetch origin ${{ github.head_ref }}
+          git checkout -B ${{ github.head_ref }} origin/${{ github.head_ref }}
+
       - name: Setup Node.js
         uses: ./.github/actions/setup-node
 
