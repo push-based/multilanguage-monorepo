@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 1.0.0 (2025-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* The CI integrated to the project
+
+### Features
+
+* update for final demo ([ecef25a](https://github.com/push-based/multilanguage-monorepo/commit/ecef25ad566ef44430b4182f5d6a64d82fd2c1c3))
+
+
+### Code Refactoring
+
+* prepare CI/CD and documentation ([d5e8a07](https://github.com/push-based/multilanguage-monorepo/commit/d5e8a07fae914a58e1bf35384ddc18e0489003e6))
+
 ## 0.1.0 (2025-04-16)
 
 
