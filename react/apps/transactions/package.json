@@ -1,6 +1,6 @@
 {
   "name": "@nx-multilanguage-monorepo/react-transactions-app",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "private": true,
   "nx": {
     "name": "react-transactions-app",
