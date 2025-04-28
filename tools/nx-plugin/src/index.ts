@@ -34,7 +34,11 @@ function getProjectName(
 }
 
 function getCurrentBranchName(): string {
-  return execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+  return (
+    process.env.GITHUB_HEAD_REF ||
+    process.env.GITHUB_REF?.replace('refs/heads/', '') ||
+    execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
+  );
 }
 
 export const createNodesV2: CreateNodesV2 = [
@@ -74,7 +78,8 @@ export const createNodesV2: CreateNodesV2 = [
             options: {
               fix: true,
               lintFilePatterns: ['{projectRoot}/**/package.json'],
-              configFilePath: '{workspaceRoot}/eslint.config.dependency-checks.mjs'
+              configFilePath:
+                '{workspaceRoot}/eslint.config.dependency-checks.mjs',
             },
           },
         };
