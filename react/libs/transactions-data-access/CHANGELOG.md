@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.1](https://github.com/push-based/multilanguage-monorepo/compare/react-transactions-data-access@1.0.0...react-transactions-data-access@1.0.1) (2025-04-29)
+
+
+### Bug Fixes
+
+* **backend:** hello world ([47e963d](https://github.com/push-based/multilanguage-monorepo/commit/47e963d957b2edd8d8d3b9af4364ae7b3d629896))
+
 ## 1.0.0 (2025-04-28)
 
 
