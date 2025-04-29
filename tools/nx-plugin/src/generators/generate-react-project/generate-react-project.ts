@@ -21,11 +21,12 @@ export async function generateReactProjectGenerator(
     projectType,
   }: GenerateReactProjectGeneratorSchema
 ) {
+  const testRunner = e2eTestRunner ?? 'cypress';
   try {
     const pathToProject = join(directory, name);
-    const testRunner = projectType === 'application'? `--e2eTestRunner=${e2eTestRunner ?? 'cypress'}` : '';
+    const testRunnerParam = projectType === 'application'? `--e2eTestRunner=${testRunner}` : '';
     execSync(
-      `npx nx g @nx/react:${projectType} ${pathToProject} ${testRunner}`,
+      `npx nx g @nx/react:${projectType} ${pathToProject} ${testRunnerParam}`,
       {
         stdio: 'inherit',
       }
@@ -36,7 +37,7 @@ export async function generateReactProjectGenerator(
 
   const projectName = updateProjectName(name, tree, directory);
 
-  if (e2eTestRunner && e2eTestRunner !== 'none') {
+  if (testRunner && testRunner !== 'none') {
     const testProjectName = updateProjectName(`${name}-e2e`, tree, directory);
     updateImplicitDependencies(tree, testProjectName, projectName);
   }
