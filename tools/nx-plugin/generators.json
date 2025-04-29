@@ -5,7 +5,7 @@
       "schema": "./dist/generators/generate-dotnet-project/schema.json",
       "description": "generate-dotnet-project generator"
     },
-    "generate-react-app": {
+    "generate-react-project": {
       "factory": "./dist/generators/generate-react-project/generate-react-project",
       "schema": "./dist/generators/generate-react-project/schema.json",
       "description": "generate-react-project generator"
