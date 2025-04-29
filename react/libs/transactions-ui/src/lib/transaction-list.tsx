@@ -12,7 +12,7 @@ export function TransactionList({transactions}: {
               display: 'flex',
               justifyContent: 'space-between',
               padding: '0.5rem 0',
-              borderBottom: '1px solid #eee',
+              borderBottom: '2px solid #eee',
             }}
           >
             <span>{tx.label}</span>
