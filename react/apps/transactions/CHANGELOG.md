@@ -2,6 +2,11 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.1](https://github.com/push-based/multilanguage-monorepo/compare/react-transactions-app@1.0.0...react-transactions-app@1.0.1) (2025-04-29)
+
+### Dependency Updates
+
+* `react-transactions-ui` updated to version `1.0.0`
 ## 1.0.0 (2025-04-28)
 
 ### Dependency Updates
