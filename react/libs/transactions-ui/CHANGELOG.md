@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.1.0](https://github.com/push-based/multilanguage-monorepo/compare/react-transactions-ui@1.0.0...react-transactions-ui@1.1.0) (2025-04-29)
+
+
+### Features
+
+* **react-transactions-ui:** border bottom adjusted ([c4d21e2](https://github.com/push-based/multilanguage-monorepo/commit/c4d21e2f3f8c1d46d28f3f7482f8edc956ba1c3a))
+
 ## 1.0.0 (2025-04-28)
 
 
